@@ -1,0 +1,21 @@
+{
+  "name": "Assessment",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/tinkitwong/Assessment---GovTech.git",
+  "author": "tinkitwong <tinkitwong@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.16.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
