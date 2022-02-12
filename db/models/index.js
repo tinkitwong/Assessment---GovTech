@@ -30,4 +30,11 @@ const db = {}
 db.Sequelize = Sequelize
 db.sequelize = sequelize
 
+db.familyMember = require('./familyMember.model.js')(sequelize, Sequelize)
+db.grantSchemes = require('./grantSchemes.model.js')(sequelize, Sequelize)
+db.household = require('./household.model.js')(sequelize, Sequelize)
+
+// relationships
+db.household.hasMany(db.familyMember, { as: 'familyMember' }) // FK defined in familyMember model
+
 module.exports = db
