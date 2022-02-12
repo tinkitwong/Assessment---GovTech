@@ -9,6 +9,7 @@ Contain house CRUD routes
 router.post("/create", householdController.create)
 
 // Add Family Member to Household
+// route.put("/addMember", household.addFamilyMember)
 
 // List Households
 

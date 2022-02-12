@@ -9,15 +9,18 @@ app.use(express.urlencoded({ extended: true }));
 
 // DB setup
 const db = require('./db/models')
-db.sequelize.sync({ force: true }).then((res) => {
+
+db.sequelize.sync({ alter: true, force: true }).then((res) => {
     console.log('Checked current db state and made necessary changes to match defined models')
 }).catch((err) => {
+    console.log(err)
     throw(err)
 })
 
 // MVC pattern
 // app.use('/api/db', require('./db/routes/general.routes'))
 app.use('/api/household', require('./household/routes/household.routes'))
+app.use('/api/person', require('./person/routes/person.routes'))
 
 // app.use('/', (req, res)=>{console.log('hello')})
 

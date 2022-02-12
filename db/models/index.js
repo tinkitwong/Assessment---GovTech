@@ -30,11 +30,12 @@ const db = {}
 db.Sequelize = Sequelize
 db.sequelize = sequelize
 
-db.familyMember = require('./familyMember.model.js')(sequelize, Sequelize)
-db.grantSchemes = require('./grantSchemes.model.js')(sequelize, Sequelize)
 db.household = require('./household.model.js')(sequelize, Sequelize)
+db.grantSchemes = require('./grantSchemes.model.js')(sequelize, Sequelize)
+db.person = require('./person.model.js')(sequelize, Sequelize)
 
 // relationships
-db.household.hasMany(db.familyMember, { as: 'familyMember' }) // FK defined in familyMember model
+db.household.hasMany(db.person, { onDelete: 'cascade', as: 'familyMembers' })
+db.person.belongsTo(db.household, { as: 'household' })
 
 module.exports = db
