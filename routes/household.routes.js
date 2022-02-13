@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const householdController = require('../controllers/household.controller.js')
+const personController = require('../controllers/person.controller.js')
 
 /**
 Contain house CRUD routes
@@ -9,7 +10,7 @@ Contain house CRUD routes
 router.post("/create", householdController.create)
 
 // Add Family Member to Household
-// route.put("/addMember", household.addFamilyMember)
+router.put("/addMember", personController.create, householdController.addFamilyMember)
 
 // List Households
 
