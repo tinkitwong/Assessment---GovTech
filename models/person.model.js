@@ -10,33 +10,33 @@ DOB
 
 module.exports = (sequelize, Sequelize) => {
     const person = sequelize.define('person', {
-        Name : {
+        name : {
             type : Sequelize.STRING,
             allowNull : false,
             unique : true
         },
-        Gender : {
+        gender : {
             type : Sequelize.STRING,
             allowNull : false,
         },
-        MaritialStatus : {
+        maritalStatus : {
             type : Sequelize.STRING,
             allowNull : false,
         },
-        Spouse : {
+        spouse : {
             type : Sequelize.STRING,
             allowNull : false,
         },
-        OccupationType : {
+        occupationType : {
             type : Sequelize.STRING,
             allowNull : false,
         },
-        AnnualIncome : {
+        annualIncome : {
             type : Sequelize.STRING,
             allowNull : false,
         },
-        DOB : {
-            type : Sequelize.DATEONLY
+        dob : {
+            type : Sequelize.DATEONLY // YYYY-MM-DD
         }
     })
     return person

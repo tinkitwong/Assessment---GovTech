@@ -25,6 +25,7 @@ app.use('/api/person', require('./routes/person.routes'))
 
 // Error Handling
 app.use((err, req, res, next) => {
+    console.log(err)
     res.status(err.status || 500)
     res.send(err)
 })

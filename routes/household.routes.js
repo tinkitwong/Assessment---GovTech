@@ -10,9 +10,10 @@ Contain house CRUD routes
 router.post("/create", householdController.create)
 
 // Add Family Member to Household
-router.put("/addMember", personController.create, householdController.addFamilyMember)
+router.post("/addMember", householdController.addFamilyMember)
 
 // List Households
+router.get("/", householdController.findAll)
 
 // Show Household
 

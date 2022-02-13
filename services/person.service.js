@@ -1,12 +1,12 @@
 const db = require('../models')
-const familyMember = db.familyMember
+const Person = db.person
 const Op = db.Sequelize.Op
 
 module.exports = {
-    // create familyMember
-    create : function (familyMemberInstance) { 
+    // create person
+    create : (personInstance) => { 
         try {
-            familyMember.create(familyMemberInstance)
+            return Person.create(personInstance)
             .then(data => {
                 return data
             })
@@ -14,7 +14,25 @@ module.exports = {
                 throw error
             })
         } catch (error) {
-            return (error)
+            return error
+        }
+    },
+    findOrCreate : async (personInstance) => {
+        try {
+            
+            const [user, created] = await Person.findOrCreate({ 
+                    where: { name : personInstance.name },
+                    defaults : personInstance
+            })
+            if ( created ) {
+                return user
+            }
+            else {
+                throw new Error(`${personInstance.name} not created succesfully`)
+            }
+            
+        } catch (error) {
+            return error
         }
     }
 }

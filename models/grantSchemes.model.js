@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
     const grantSchemes = ('grantSchemes', {
-        Name : Sequelize.STRING,
+        type : Sequelize.STRING,
         allowNull : false,
     })
     return grantSchemes 

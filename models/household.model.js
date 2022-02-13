@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
     const household = sequelize.define('household', {
-        HousingType : {
+        housingType : {
             type : Sequelize.STRING,
             allowNull : false,
         }

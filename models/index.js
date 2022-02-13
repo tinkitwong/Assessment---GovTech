@@ -36,6 +36,6 @@ db.person = require('./person.model.js')(sequelize, Sequelize)
 
 // relationships
 db.household.hasMany(db.person, { onDelete: 'cascade', as: 'familyMembers' })
-db.person.belongsTo(db.household, { as: 'household' })
+db.person.belongsTo(db.household, { foreignKey: 'householdId', as: 'household' })
 
 module.exports = db

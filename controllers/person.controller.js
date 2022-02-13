@@ -11,14 +11,21 @@ exports.create = async (req, res, next) => {
             spouse : req.body.spouse ? req.body.spouse : "",
             occupationType : req.body.occupationType ? req.body.occupationType : "",
             annualIncome : req.body.annualIncome ? req.body.annualIncome : "",
-            DOB : req.body.dob ? req.body.dob : ""
+            dob : req.body.dob ? req.body.dob : ""
         }
         
         const person = await personService.create(personInstance)
-        req.body.familyMember = person
-        
-        next()
-        
+        res.send(person)
+        /** Check whether person needs to be added to household */
+        // const addToHousehold = req.body.addToHousehold ? req.body.addToHousehold : false
+        // if ( !addToHousehold ) {
+        //     res.send({message: `{personInstance.name} created`, person})
+        // }
+        // else { 
+        //     req.body.familyMember = person
+        //     next() 
+        // }
+
     } catch (error) {
         next(error)
     }
