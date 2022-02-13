@@ -1,6 +1,6 @@
 const householdService = require('../services/household.service.js')
 const personService = require('../services/person.service.js')
-const { housingTypes } = require('../utils/constants.js')
+const { housingTypes, occupationTypes } = require('../utils/constants.js')
 
 // create a household (housing unit)
 exports.create = async (req, res, next) => {
@@ -10,11 +10,14 @@ exports.create = async (req, res, next) => {
         const housingType = req.body.housingType
 
         if ( !housingType ) {
-            res.status(400).send({message: 'housingType cannot be empty'})
+            res.status(400).send({message: `housingType cannot be empty`})
         }
         
         if ( !(housingType in housingTypes) ) {
-            res.status(400).send({message: 'housingType not valid.'})
+            res.status(400).send({
+                message: `${housingType} is not a valid housingType.`,
+                validHousingTypes: housingTypes
+        })
             return
         }
         
@@ -39,13 +42,31 @@ exports.addFamilyMember = async (req, res, next) => {
         let household = await householdService.findByPk(householdId)
         
         if ( household === null ) {
-            res.status(500).send({
+            res.status(400).send({
                 message: `No household of householdId = ${householdId} found`
             })
             return
         }
 
-        const personInstance = req.body.person ? req.body.person : ""
+        /** Verify personInstance */
+        const personInstance = {
+            name : req.body.person.name ? req.body.person.name : "",
+            gender : req.body.person.gender ? req.body.person.gender : "",
+            maritalStatus : req.body.person.maritalStatus ? req.body.person.maritalStatus : "",
+            spouse : req.body.person.spouse ? req.body.person.spouse : "",
+            occupationType : req.body.person.occupationType ? req.body.person.occupationType : "",
+            annualIncome : req.body.person.annualIncome ? req.body.person.annualIncome : "",
+            dob : req.body.person.dob ? req.body.person.dob : ""
+        }
+
+        if ( !(personInstance.occupationType in occupationTypes) ) {
+            res.status(500).send({
+                message: `${personInstance.occupationType} is not a valid occupationType.`,
+                validOccupationTypes : occupationTypes
+            })
+            return
+        }
+        
         const familyMember = await personService.findOrCreate(personInstance)
         await household.addFamilyMembers(familyMember)
         
