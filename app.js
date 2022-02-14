@@ -21,6 +21,7 @@ db.sequelize.sync({ alter: true, force: true }).then((res) => {
 // app.use('/api/db', require('./db/routes/general.routes'))
 app.use('/api/household', require('./routes/household.routes'))
 app.use('/api/person', require('./routes/person.routes'))
+app.use('/api/grants', require('./routes/grants.routes'))
 
 
 // Error Handling

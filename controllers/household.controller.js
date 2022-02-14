@@ -105,3 +105,29 @@ exports.findAll = async (req, res, next) => {
         next(error)
     }
 }
+
+// get household by id
+exports.findByPk = async (req, res, next) => {
+    try {
+
+        const householdId = req.params.id ? req.params.id : ""
+        if (householdId === null) {
+            res.status(400).send({
+                message : `householdId = ${householdId} cannot be null`
+            })
+        }
+        const household = await householdService.findByPk(householdId)
+        
+        if (household === null) {
+            res.status(500).send({
+                message : `household with householdId = ${householdId} not found`
+            })
+        } 
+        else {
+            res.send(household)
+        }
+
+    } catch (error) {
+        next(error)
+    }
+}

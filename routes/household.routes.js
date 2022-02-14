@@ -16,7 +16,7 @@ router.post("/addMember", householdController.addFamilyMember)
 router.get("/", householdController.findAll)
 
 // Show Household
+router.get("/:id", householdController.findByPk)
 
-// Search for households and receipients of grant disbursement
 
 module.exports = router

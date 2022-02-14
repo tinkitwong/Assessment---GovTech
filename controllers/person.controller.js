@@ -1,6 +1,6 @@
 const personService = require('../services/person.service.js')
 
-// MW to add familyMember to household
+// create person
 exports.create = async (req, res, next) => {
     try {
         
@@ -16,15 +16,6 @@ exports.create = async (req, res, next) => {
         
         const person = await personService.create(personInstance)
         res.send(person)
-        /** Check whether person needs to be added to household */
-        // const addToHousehold = req.body.addToHousehold ? req.body.addToHousehold : false
-        // if ( !addToHousehold ) {
-        //     res.send({message: `{personInstance.name} created`, person})
-        // }
-        // else { 
-        //     req.body.familyMember = person
-        //     next() 
-        // }
 
     } catch (error) {
         next(error)
