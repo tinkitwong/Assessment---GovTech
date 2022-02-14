@@ -9,8 +9,9 @@ const sequelize = new Sequelize(
     {
         host: dbConfig.HOST,
         dialect: dbConfig.dialect,
+        dialectOptions: { decimalNumbers: true },
         operatorsAliases: 0,  // false
-      
+
         pool: {
           max: dbConfig.pool.max,
           min: dbConfig.pool.min,

@@ -32,8 +32,7 @@ module.exports = (sequelize, Sequelize) => {
             allowNull : false,
         },
         annualIncome : {
-            type : Sequelize.STRING,
-            allowNull : false,
+            type : Sequelize.DECIMAL(10,2),
         },
         dob : {
             type : Sequelize.DATEONLY // YYYY-MM-DD
