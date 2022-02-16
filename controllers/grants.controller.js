@@ -65,7 +65,6 @@ exports.checkEligibility = async (req, res, next) => {
                 * Households with children of less than 16 years old
                 * Household income of less than $150,000
                 * */
-
                 if (getAge(person.dob) < 16 && householdAnnualIncome < 150000 && householdAnnualIncome <= totalIncome) {
                     grantRecipients.SEB.push(person)
                 }
