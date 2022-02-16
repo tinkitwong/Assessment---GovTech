@@ -1,4 +1,3 @@
-const grantService = require('../services/grants.service.js')
 const householdService = require('../services/household.service.js')
 const { getAge } = require('../utils/helpers.js')
 
@@ -6,6 +5,7 @@ const { getAge } = require('../utils/helpers.js')
 exports.checkEligibility = async (req, res, next) => {
     try {
         
+        // criterias
         const householdSize = parseInt(req.query.householdSize) ? parseInt(req.query.householdSize) : 0
         const totalIncome = parseFloat(req.query.totalIncome) ? parseFloat(req.query.totalIncome) : 0
         
@@ -101,7 +101,7 @@ exports.checkEligibility = async (req, res, next) => {
             })
 
             // return the receipients and households
-            table[household.id] = grantRecipients  
+            table[household.id] = grantRecipients
         })
         res.send(table)
     } catch (error) {
