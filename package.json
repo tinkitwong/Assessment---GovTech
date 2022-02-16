@@ -6,7 +6,13 @@
   "author": "tinkitwong <tinkitwong@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "cross-env nodemon app.js",
+    "test": "cross-env NODE_ENV=test jest --runInBand --detectOpenHandles --coverage"
+  },
+  "jest" : {
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   },
   "dependencies": {
     "cross-env": "^7.0.3",
@@ -16,6 +22,9 @@
     "sequelize": "^6.16.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "jest": "^27.5.1",
+    "mz": "^2.7.0",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.2.2"
   }
 }

@@ -17,10 +17,6 @@ const sequelize = new Sequelize(
           min: dbConfig.pool.min,
           acquire: dbConfig.pool.acquire,
           idle: dbConfig.pool.idle
-        },
-      
-        define: {
-          freezeTableName: true,
         }, 
         logging: false
     }
@@ -31,9 +27,10 @@ const db = {}
 db.Sequelize = Sequelize
 db.sequelize = sequelize
 
+
 db.household = require('./household.model.js')(sequelize, Sequelize)
-db.grants = require('./grants.model.js')(sequelize, Sequelize)
 db.person = require('./person.model.js')(sequelize, Sequelize)
+db.grants = require('./grants.model.js')(sequelize, Sequelize)
 
 // relationships
 db.household.hasMany(db.person, { onDelete: 'cascade', as: 'familyMembers' })

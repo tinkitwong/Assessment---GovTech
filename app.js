@@ -9,12 +9,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // DB setup
 const db = require('./models/')
-
 db.sequelize.sync({ alter: true, force: true }).then((res) => {
-    console.log('Checked current db state and made necessary changes to match defined models')
+    // console.log('Checked current db state and made necessary changes to match defined models')
 }).catch((err) => {
-    console.log(err)
-    throw(err)
+    throw err
 })
 
 // MVC pattern
@@ -25,12 +23,18 @@ app.use('/api/grants', require('./routes/grants.routes'))
 
 // Error Handling
 app.use((err, req, res, next) => {
+    // console.log(err)
     res.status(err.status || 500)
     res.send({
         message : 'Internal Server Error'
     })
 })
 
-app.listen(process.env.DEVPORT || 8080, () => {
-    console.log(`Server running on ${process.env.DEVPORT}`)
-})
+
+if (process.env.NODE_ENV === 'test') {
+    module.exports = app;
+} else {
+    app.listen(process.env.DEVPORT || 8080, () => {
+        console.log(`Server running on ${process.env.DEVPORT}`)
+    })
+}

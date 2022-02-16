@@ -37,6 +37,9 @@ module.exports = (sequelize, Sequelize) => {
         dob : {
             type : Sequelize.DATEONLY // YYYY-MM-DD
         }
+    },
+    {
+        tableName: 'person',
     })
     return person
 }

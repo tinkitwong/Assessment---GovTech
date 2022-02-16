@@ -18,7 +18,7 @@ exports.checkEligibility = async (req, res, next) => {
             })
             return
         }
-
+        
         let table = {}
         
         households.forEach(household => {
