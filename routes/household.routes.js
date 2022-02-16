@@ -18,5 +18,10 @@ router.get("/", householdController.findAll)
 // Show Household
 router.get("/:id", householdController.findByPk)
 
+// Delete Household
+router.delete("/delete/:id", householdController.delete)
+
+// Remove Family Member from Household
+router.delete("/removeMember", householdController.removeMember)
 
 module.exports = router

@@ -6,8 +6,8 @@ const { getAge } = require('../utils/helpers.js')
 exports.checkEligibility = async (req, res, next) => {
     try {
         
-        const householdSize = req.query.householdSize ? req.query.householdSize : 0
-        const totalIncome = req.query.totalIncome ? req.query.totalIncome : 0
+        const householdSize = parseInt(req.query.householdSize) ? parseInt(req.query.householdSize) : 0
+        const totalIncome = parseFloat(req.query.totalIncome) ? parseFloat(req.query.totalIncome) : 0
         
         // get all households
         let households = await householdService.findAll()
@@ -17,15 +17,7 @@ exports.checkEligibility = async (req, res, next) => {
                 message : `Number of households found = ${households.length}`
             })
             return
-        };
-        
-        let results = {
-            'Student Encouragement Bonus' : [],
-            'Family Togetherness Scheme' : [],
-            'Elder Bonus' : [],
-            'Baby Sunshine Grant' : [],
-            'YOLO GST Grant' : [], 
-        };
+        }
 
         let table = {}
         
@@ -34,7 +26,7 @@ exports.checkEligibility = async (req, res, next) => {
             let householdAnnualIncome = 0
             let husband, wife
         
-            if (household.familyMembers.length === 0) {
+            if (household.familyMembers.length === 0 || household.familyMembers.length > householdSize) {
                 return
             }
 
@@ -53,28 +45,28 @@ exports.checkEligibility = async (req, res, next) => {
             })
             
             let grantRecipients = {
-                SEB : [],
-                FamilyTGT : [],
-                ElderBonus : [],
-                BSG : [],
-                YOLO : []
+                SEB : [], // Student Encouragement Bonus
+                FamilyTGT : [], // Family Tgterness Scheme
+                ElderBonus : [], // Elder Bonus
+                BSG : [], // Baby Sunshine Grant
+                YOLO : [] // YOLO GST Grant
             }
 
             /** YOLO GST Grant
             * HDB households with annual income of less than $100,000.
             */
-            if (householdAnnualIncome < 100000) {
+            if (householdAnnualIncome < 100000 && householdAnnualIncome <= totalIncome) {
                 grantRecipients.YOLO = household.familyMembers
             }
             
-            household.familyMembers.forEach(person => {
+            household.familyMembers.forEach(person => { 
                 
                 /** Student Encouragement Bonus 
                 * Households with children of less than 16 years old
                 * Household income of less than $150,000
                 * */
 
-                if (getAge(person.dob) < 16 && householdAnnualIncome < 150000) {
+                if (getAge(person.dob) < 16 && householdAnnualIncome < 150000 && householdAnnualIncome <= totalIncome) {
                     grantRecipients.SEB.push(person)
                 }
 
@@ -82,11 +74,12 @@ exports.checkEligibility = async (req, res, next) => {
                 * Households with husband & wife
                 * Has child(ren) younger than 18 years old.
                 */
+                
                 if (getAge(person.dob) < 18) {
                     // check if husband and wife in same household
                     if (husband !== undefined && wife !== undefined){ 
                         if (husband.spouse === wife.name) {
-                            grantRecipients.FamilyTGT.push(person)
+                            grantRecipients.FamilyTGT = household.familyMembers
                         }
                     } 
                 }
@@ -107,11 +100,10 @@ exports.checkEligibility = async (req, res, next) => {
 
             })
 
-            // TODO: Return the receipients and households
-            table[household.id] = grantRecipients
-            res.send(table)
+            // return the receipients and households
+            table[household.id] = grantRecipients  
         })
-        console.log(table)
+        res.send(table)
     } catch (error) {
         next(error)
     }

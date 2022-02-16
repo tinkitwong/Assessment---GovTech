@@ -26,9 +26,10 @@ app.use('/api/grants', require('./routes/grants.routes'))
 
 // Error Handling
 app.use((err, req, res, next) => {
-    console.log(err)
     res.status(err.status || 500)
-    res.send(err)
+    res.send({
+        message : 'Internal Server Error'
+    })
 })
 
 app.listen(process.env.DEVPORT || 8080, () => {

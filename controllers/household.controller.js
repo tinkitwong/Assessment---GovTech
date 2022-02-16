@@ -109,13 +109,14 @@ exports.findAll = async (req, res, next) => {
 // get household by id
 exports.findByPk = async (req, res, next) => {
     try {
-
         const householdId = req.params.id ? req.params.id : ""
+
         if (householdId === null) {
             res.status(400).send({
                 message : `householdId = ${householdId} cannot be null`
             })
         }
+        
         const household = await householdService.findByPk(householdId)
         
         if (household === null) {
@@ -127,6 +128,68 @@ exports.findByPk = async (req, res, next) => {
             res.send(household)
         }
 
+    } catch (error) {
+        next(error)
+    }
+}
+
+// delete household (* deletes familyMembers as well)
+exports.delete = async (req, res, next) => {
+    try {
+        const householdId = req.body.householdId ? req.body.householdId : ""
+        
+        if (householdId === null) {
+            res.status(400).send({
+                message: `HouseholdId = ${householdId} cannot be null`
+            })
+            return
+        }
+
+        const result = await householdService.delete(householdId)
+        if (result === 1) {
+            res.status(200).send({
+                message : `Household ID = ${householdId} deleted succesfully`
+            })
+        }
+        else {
+            res.status(500).send({
+                message: `Cannot delete Household ID = ${householdId}`
+            })
+        }
+    } catch (error) {
+        next(error)
+    }
+}
+// remove family member
+exports.removeMember = async (req , res, next) => {
+    try {
+
+        const householdId = req.body.householdId ? req.body.householdId : ""
+        const familyMemberName = req.body.familyMemberName ? req.body.familyMemberName : ""
+        
+        // get household Obj
+        const household = await householdService.findByPk(householdId)
+        
+        // get familyMember Obj
+        const familyMember = await personService.findByName(familyMemberName)
+
+        // remove familyMember from household
+        await household.removeFamilyMembers(familyMember)
+
+        const checkHousehold = await householdService.findByPk(householdId)
+        const familyMembers = await checkHousehold.getFamilyMembers()
+
+        if (familyMembers.length +1 === household.familyMembers.length) {
+            res.status(200).send({
+                message : `${familyMemberName} removed from HouseholdId = ${householdId}`
+            })
+        }
+        else {
+            res.status(500).send({
+                message : `${familyMemberName} was not removed from HouseholdId = ${householdId}`
+            })
+        }
+                
     } catch (error) {
         next(error)
     }

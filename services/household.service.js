@@ -46,5 +46,18 @@ module.exports = {
         } catch (error) {
             return error
         }
-    }
+    },
+    delete : (householdId) => {
+        try {
+            return Household.destroy({
+                where : { id : householdId }
+            }).then(data => {
+                return data
+            }).catch(error => {
+                throw error
+            })
+        } catch (error) {
+            return error
+        }
+    },
 }
