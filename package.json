@@ -6,8 +6,8 @@
   "author": "tinkitwong <tinkitwong@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "cross-env nodemon app.js",
-    "test": "cross-env NODE_ENV=test jest --detectOpenHandles --coverage"
+    "dev": "cross-env nodemon --trace-warnings app.js",
+    "test": "cross-env NODE_ENV=test jest --detectOpenHandles --coverage --runInBand"
   },
   "jest" : {
     "coveragePathIgnorePatterns": [
