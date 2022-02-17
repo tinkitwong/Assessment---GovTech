@@ -1,0 +1,674 @@
+{
+	"info": {
+		"_postman_id": "bf310fab-7140-444d-bf28-a99c2ae13594",
+		"name": "GovTech Assessment API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Household",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"housingType\": \"LANDED\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/household/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"household",
+						"create"
+					]
+				},
+				"description": "This API EndPoint creates a household of the below following types:\n\n*   LANDED\n*   CONDOMINIUM\n*   HDB"
+			},
+			"response": [
+				{
+					"name": "Add HDB Household",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"housingType\": \"HDB\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/household/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"household",
+								"create"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Add Condominium Household",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"housingType\": \"CONDOMINIUM\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/household/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"household",
+								"create"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Add Landed Household",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"housingType\": \"LANDED\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/household/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"household",
+								"create"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Create Person",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Michael Lim\",\n    \"gender\": \"Male\",\n    \"maritalStatus\": \"Single\",\n    \"spouse\": \"\",\n    \"occupationType\": \"UNEMPLOYED\",\n    \"annualIncome\": 0,\n    \"dob\": \"1996-04-15\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/person/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"person",
+						"create"
+					]
+				},
+				"description": "This API EndPoint creates a Person Instance. See below for valid occupationTypes\n\n*   UNEMPLOYED\n*   EMPLOYED\n*   STUDENT"
+			},
+			"response": [
+				{
+					"name": "Create Person Instance",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Michael Lim\",\n    \"gender\": \"Male\",\n    \"maritalStatus\": \"Single\",\n    \"spouse\": \"\",\n    \"occupationType\": \"UNEMPLOYED\",\n    \"annualIncome\": 0,\n    \"dob\": \"1996-04-15\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/person/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"person",
+								"create"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Add Family Member to Household",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"person\": {\n        \"name\": \"Stephanie Seow\",\n        \"gender\": \"Female\",\n        \"maritalStatus\": \"Married\",\n        \"spouse\": \"Matthew Ang\",\n        \"occupationType\": \"EMPLOYED\",\n        \"annualIncome\": 60000,\n        \"dob\": \"1996-04-15\"\n    },\n    \"household\": {\n        \"householdId\": 1\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/household/addMember",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"household",
+						"addMember"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add Wife To Household",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"person\": {\n        \"name\": \"Stephanie Seow\",\n        \"gender\": \"Female\",\n        \"maritalStatus\": \"Married\",\n        \"spouse\": \"Matthew Ang\",\n        \"occupationType\": \"EMPLOYED\",\n        \"annualIncome\": 60000,\n        \"dob\": \"1996-04-15\"\n    },\n    \"household\": {\n        \"householdId\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/household/addMember",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"household",
+								"addMember"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Add Husband To Household",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"person\": {\n        \"name\": \"Matthew Ang\",\n        \"gender\": \"Male\",\n        \"maritalStatus\": \"Married\",\n        \"spouse\": \"Stephanie Seow\",\n        \"occupationType\": \"EMPLOYED\",\n        \"annualIncome\": 10000,\n        \"dob\": \"1996-04-15\"\n    },\n    \"household\": {\n        \"householdId\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/household/addMember",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"household",
+								"addMember"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Add Child To Household",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"person\": {\n        \"name\": \"Allen Ang\",\n        \"gender\": \"Male\",\n        \"maritalStatus\": \"Single\",\n        \"spouse\": \"\",\n        \"occupationType\": \"STUDENT\",\n        \"annualIncome\": 0,\n        \"dob\": \"2015-04-15\"\n    },\n    \"household\": {\n        \"householdId\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/household/addMember",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"household",
+								"addMember"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Add Elderly To Household",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"person\": {\n        \"name\": \"Roseh Ang\",\n        \"gender\": \"Male\",\n        \"maritalStatus\": \"Single\",\n        \"spouse\": \"\",\n        \"occupationType\": \"UNEMPLOYED\",\n        \"annualIncome\": 0,\n        \"dob\": \"1963-01-20\"\n    },\n    \"household\": {\n        \"householdId\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/household/addMember",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"household",
+								"addMember"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Add Someone To Household",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"person\": {\n        \"name\": \"Dixon Loa\",\n        \"gender\": \"Male\",\n        \"maritalStatus\": \"Single\",\n        \"spouse\": \"\",\n        \"occupationType\": \"EMPLOYED\",\n        \"annualIncome\": 40000,\n        \"dob\": \"1994-04-15\"\n    },\n    \"household\": {\n        \"householdId\": 1\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/household/addMember",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"household",
+								"addMember"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Get All Households",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/household",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"household"
+					]
+				},
+				"description": "This API EndPoint gets all registered Households and their associations (ie. Family Members)"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Household Details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/household/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"household",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"description": "This API EndPoint gets details of a particular Household by specifying the Household ID."
+			},
+			"response": [
+				{
+					"name": "Get Household Details for Household ID = 1",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/household/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"household",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Check Grant Elligibility",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/grants/checkEligibility?householdSize=1&totalIncome=100000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"grants",
+						"checkEligibility"
+					],
+					"query": [
+						{
+							"key": "householdSize",
+							"value": "1"
+						},
+						{
+							"key": "totalIncome",
+							"value": "100000"
+						}
+					]
+				},
+				"description": "This API EndPoint searches for Households and recipients of grant disbursement based on two criteria\n\n1.  Household Size\n2.  Total Household Income  \n    \n\nThe available Grants are as follows:\n\n*   Student Encouragement Bonus\n*   Family Togetherness Scheme\n*   Elder Bonus\n*   Baby Sunshine Grant\n*   YOLO GST Grant\n    \n\nThe returned object will be of the following format:\n\n{\n\nhouseholdId : {\n\ngrant1 : \\[ familyMember , familyMember \\],\n\ngrant2 : \\[ familyMember , familyMember \\],\n\n.... },\n\nhouseholdId : { ... },\n\n}"
+			},
+			"response": [
+				{
+					"name": "Check Grant Elligibility For HouseholdSize <=3 and Total Income <= 50000",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/grants/checkEligibility?householdSize=3&totalIncome=50000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"grants",
+								"checkEligibility"
+							],
+							"query": [
+								{
+									"key": "householdSize",
+									"value": "3"
+								},
+								{
+									"key": "totalIncome",
+									"value": "50000"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Remove Family Member from Household",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"householdId\" : 1,\n    \"familyMemberName\" : \"Stephanie Seow\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/household/removeMember",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"household",
+						"removeMember"
+					]
+				},
+				"description": "This API EndPoint removes a family member from a specified household"
+			},
+			"response": [
+				{
+					"name": "Remove Jason Seow from Household 1",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"householdId\" : 1,\n    \"familyMemberName\" : \"Jason Seow\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/household/removeMember",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"household",
+								"removeMember"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Delete Household",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/household/delete/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"household",
+						"delete",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"description": "This API EndPoint deletes the household based on householdId input. Associated Family Members are also deleted."
+			},
+			"response": [
+				{
+					"name": "Deletes HouseholdId 1 and its associated Family Members",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/household/delete/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"household",
+								"delete",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	]
+}
