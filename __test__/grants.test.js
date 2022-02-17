@@ -3,7 +3,7 @@ const supertest = require('supertest')
 const db  = require("../models/index")
 require('mysql2/node_modules/iconv-lite').encodingExists('cesu8')
 
-describe('[/api/household]', () => {
+describe('[/api/grants]', () => {
     let thisDb = db
 
     beforeAll(async () => {

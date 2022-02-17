@@ -14,9 +14,15 @@ exports.create = async (req, res, next) => {
             dob : req.body.dob ? req.body.dob : ""
         }
         
-        const person = await personService.create(personInstance)
-        res.send(person)
-
+        const person = await personService.findOrCreate(personInstance)
+        if ( Object.keys(person).length === 0 ) {
+            res.status(500).send({
+                message : `${personInstance.name} already registered`
+            })
+        } else {
+            res.send(person)
+        }
+        
     } catch (error) {
         next(error)
     }

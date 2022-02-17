@@ -4,7 +4,7 @@ const db  = require("../models/index")
 const { occupationTypes, housingTypes } = require('../utils/constants.js')
 require('mysql2/node_modules/iconv-lite').encodingExists('cesu8')
 
-describe('[/api/household]', () => {
+describe('[/api/person]', () => {
     // let thisDb = db
     // jest.useFakeTimers()
     let thisDb = db
@@ -55,10 +55,18 @@ describe('[/api/household]', () => {
     })
 
     it('creates a person [/api/person/create]', async() => {
-        let requestBody = {}
+        let requestBody = {
+            "name": "Michael Lim",
+            "gender": "Male",
+            "maritalStatus": "Single",
+            "spouse": "",
+            "occupationType": "Unemployed",
+            "annualIncome": "",
+            "dob": "1996-04-15"
+        }
         let res = await supertest(app).post("/api/person/create").send(requestBody)
         expect(res.statusCode).toBe(500)
-        expect(res.body).toStrictEqual({"message": "Internal Server Error"})
+        expect(res.body).toStrictEqual({"message": `${requestBody.name} already registered`})
     })
 
 })

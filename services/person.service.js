@@ -4,19 +4,19 @@ const Op = db.Sequelize.Op
 
 module.exports = {
     // create person
-    create : (personInstance) => { 
-        try {
-            return Person.create(personInstance)
-            .then(data => {
-                return data
-            })
-            .catch(error => {
-                throw error
-            })
-        } catch (error) {            
-            return error
-        }
-    },
+    // create : (personInstance) => { 
+    //     try {
+    //         return Person.create(personInstance)
+    //         .then(data => {
+    //             return data
+    //         })
+    //         .catch(error => {
+    //             throw error
+    //         })
+    //     } catch (error) {            
+    //         return error
+    //     }
+    // },
     // create person if not found
     findOrCreate : async (personInstance) => {
         try {
