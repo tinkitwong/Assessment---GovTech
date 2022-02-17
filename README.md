@@ -25,9 +25,9 @@ yarn run test
 
 ## API Routes
 
-Note : API Usage via Postman Collections; Download and import Postman Collections into your Personal Workspace and follow the examples given. Please see the description and examples of each EndPoint provided. 
+Note : API Usage via Postman Collections; Download and import `GovTech Assessment API.postman_collection.json` into your Personal Workspace and follow the examples given. Please see the description and examples of each EndPoint provided. 
 
-1. Household
+### Household
 - [X] Create Household 
   - http://localhost:8080/api/household/create
 - [X] Add a Family Member to Household
@@ -42,11 +42,11 @@ Note : API Usage via Postman Collections; Download and import Postman Collection
   - http://localhost:8080/api/household/removeMember
 
 
-2. Grants
+### Grants
 - [X] Search for households and recipients of grant disbursement 
   - http://localhost:8080/api/grants/checkElligibility
 
-3. Person
+### Person
 - [X] http://localhost:8080/api/person/create
 
 ## Architecture
